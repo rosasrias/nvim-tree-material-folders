@@ -39,7 +39,7 @@ but fully configurable and extensible.
 
 ```lua
 {
-  "gentleman-programming/gp.nvimtree",
+  "rosasrias/gp.nvimtree",
   dependencies = { "nvim-tree/nvim-tree.lua" },
   config = function()
     require("gp.nvimtree").setup()
