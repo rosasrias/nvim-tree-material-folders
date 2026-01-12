@@ -66,21 +66,23 @@ function M.apply()
 		return res
 	end
 
-	-- =====================================================
-	-- Name patch (same cache, no recompute)
-	-- =====================================================
-	---@diagnostic disable-next-line: duplicate-set-field
-	function DirectoryNode:highlighted_name()
-		local res = original_name(self)
+-- =====================================================
+-- Name patch (same cache, no recompute)
+-- =====================================================
+---@diagnostic disable-next-line: duplicate-set-field
+function DirectoryNode:highlighted_name()
+	local res = original_name(self)
 
-		local cached = cache.resolve(self)
-		if not cached or not cached.hl then
-			return res
-		end
-
-		res.hl = cached.hl
+	local cached = cache.resolve(self)
+	if not cached or not cached.hl then
 		return res
 	end
+
+	-- nvim-tree expects a TABLE of highlights
+	res.hl = { cached.hl }
+
+	return res
+end
 end
 
 return M
