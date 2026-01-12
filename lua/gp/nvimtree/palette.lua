@@ -6,110 +6,95 @@
 ---@type table<string, GpColorVariants>
 local palette = {
 
-	-- Core / Source / App
-	core = {
-		base = "#89b4fa", -- blue
-		soft = "#7393d1",
-		muted = "#4c5f7a",
-	},
+  core = {
+    base  = "#89b4fa", -- blue
+    soft  = "#74a3e6",
+    muted = "#4a6fa3",
+  },
 
-	-- Frontend (React / UI)
-	frontend = {
-		base = "#a6e3a1", -- green
-		soft = "#86c892",
-		muted = "#4f6f5a",
-	},
+  frontend = {
+    base  = "#a6e3a1", -- green
+    soft  = "#8fcb8b",
+    muted = "#5a7f57",
+  },
 
-	-- Backend / API
-	backend = {
-		base = "#f38ba8", -- red
-		soft = "#d0728c",
-		muted = "#7a4555",
-	},
+  backend = {
+    base  = "#f38ba8", -- red/pink
+    soft  = "#d37690",
+    muted = "#8a4b5b",
+  },
 
-	-- State / Store
-	state = {
-		base = "#cba6f7", -- mauve
-		soft = "#aa86d1",
-		muted = "#6a4f8a",
-	},
+  state = {
+    base  = "#cba6f7", -- purple
+    soft  = "#b08dd9",
+    muted = "#6f5a8f",
+  },
 
-	-- Database / Supabase
-	database = {
-		base = "#fab387", -- peach
-		soft = "#d39a74",
-		muted = "#8a5e45",
-	},
+  database = {
+    base  = "#fab387", -- orange
+    soft  = "#dd9a73",
+    muted = "#8f6347",
+  },
 
-	-- Platform / Mobile / Native
-	platform = {
-		base = "#74c7ec", -- sapphire
-		soft = "#5fa4c4",
-		muted = "#3a667a",
-	},
+  platform = {
+    base  = "#89dceb", -- cyan
+    soft  = "#6fbecb",
+    muted = "#447a83",
+  },
 
-	-- Game / 3D / Engine
-	game = {
-		base = "#94e2d5", -- teal
-		soft = "#76bdb3",
-		muted = "#4a7a72",
-	},
+  game = {
+    base  = "#94e2d5", -- teal
+    soft  = "#78c2b6",
+    muted = "#4f7f77",
+  },
 
-	-- Data / Analytics
-	data = {
-		base = "#f9e2af", -- yellow
-		soft = "#d1bc8f",
-		muted = "#7a6a45",
-	},
+  data = {
+    base  = "#f9e2af", -- yellow
+    soft  = "#d7c18f",
+    muted = "#8a7a55",
+  },
 
-	-- Styles / Theme
-	styles = {
-		base = "#94e2d5", -- teal (lighter)
-		soft = "#78bfb3",
-		muted = "#4a7266",
-	},
+  styles = {
+    base  = "#74c7ec", -- light blue
+    soft  = "#5fa8c7",
+    muted = "#3c6b7d",
+  },
 
-	-- Assets / Media
-	assets = {
-		base = "#bac2de", -- lavender
-		soft = "#9aa1c1",
-		muted = "#5f637a",
-	},
+  assets = {
+    base  = "#f2cdcd", -- peach
+    soft  = "#d4b0b0",
+    muted = "#8a6f6f",
+  },
 
-	-- Tests
-	tests = {
-		base = "#b4befe", -- periwinkle
-		soft = "#929bd4",
-		muted = "#5a5f8a",
-	},
+  tests = {
+    base  = "#b4befe", -- lavender
+    soft  = "#9aa2dd",
+    muted = "#61668f",
+  },
 
-	-- Tooling / Scripts
-	tools = {
-		base = "#89b4fa",
-		soft = "#7393d1",
-		muted = "#4c5f7a",
-	},
+  tools = {
+    base  = "#7f849c", -- gray-blue
+    soft  = "#676b82",
+    muted = "#3f4254",
+  },
 
-	-- Config / Infra
-	config = {
-		base = "#6c7086", -- overlay
-		soft = "#585c70",
-		muted = "#3a3d4f",
-	},
+  config = {
+    base  = "#6c7086", -- gray
+    soft  = "#585b70",
+    muted = "#313244",
+  },
 
-	-- Build / Dist
-	build = {
-		base = "#fab387",
-		soft = "#d39a74",
-		muted = "#8a5e45",
-	},
+  build = {
+    base  = "#eba0ac", -- pink/orange
+    soft  = "#cd8a95",
+    muted = "#84565d",
+  },
 
-	-- Docs / Content
-	docs = {
-		base = "#89dceb", -- sky
-		soft = "#6fb6c9",
-		muted = "#436f7a",
-	},
+  docs = {
+    base  = "#89ddff", -- sky
+    soft  = "#6fb7d9",
+    muted = "#446f8a",
+  },
 }
 
 return palette
