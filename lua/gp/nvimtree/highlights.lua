@@ -1,13 +1,7 @@
 local config = require("gp.nvimtree.config")
 local palette = require("gp.nvimtree.palette")
-local depth = require("gp.nvimtree.depth")
 
----@class GpHighlightGroup
----@field base string
----@field soft string
----@field muted string
-
----@type table<string, GpHighlightGroup>
+---@type table<string, string>
 local groups = {}
 
 local M = {}
@@ -18,27 +12,26 @@ local M = {}
 
 ---Create highlight groups for all families
 function M.setup()
-	for family, colors in pairs(palette) do
-		groups[family] = {
-			base = "GpNvimTree" .. family:sub(1, 1):upper() .. family:sub(2),
-			soft = "GpNvimTree" .. family:sub(1, 1):upper() .. family:sub(2) .. "Soft",
-			muted = "GpNvimTree" .. family:sub(1, 1):upper() .. family:sub(2) .. "Muted",
-		}
+  for family, color in pairs(palette) do
+    local group = "GpNvimTree" .. family:sub(1, 1):upper() .. family:sub(2)
+    groups[family] = group
 
-		vim.api.nvim_set_hl(0, groups[family].base, {
-			fg = colors.base,
-			bold = true,
-		})
+    vim.api.nvim_set_hl(0, group, {
+      fg = color,
+      bold = true,
+    })
+  end
 
-		vim.api.nvim_set_hl(0, groups[family].soft, {
-			fg = colors.soft,
-		})
+  -- Neutral file highlight (important)
+  vim.api.nvim_set_hl(0, "GpNvimTreeFile", {
+    fg = "#CDD6F4",
+  })
 
-		vim.api.nvim_set_hl(0, groups[family].muted, {
-			fg = colors.muted,
-			italic = true,
-		})
-	end
+  -- Entry files (index, main, app, etc)
+  vim.api.nvim_set_hl(0, "GpNvimTreeEntryFile", {
+    fg = "#F38BA8",
+    bold = true,
+  })
 end
 
 -- =========================================================
@@ -49,28 +42,12 @@ end
 ---@param node table
 ---@param family table
 ---@return string|nil
-function M.resolve(node, family)
-	if not config.options.enable_colors then
-		return nil
-	end
+function M.resolve(_, family)
+  if not config.options.enable_colors then
+    return nil
+  end
 
-	local fam_key = family.icon_key
-	local fam_groups = groups[fam_key]
-	if not fam_groups then
-		return nil
-	end
-
-	local d = depth.get(node)
-
-	if d >= config.options.depth.muted then
-		return fam_groups.muted
-	end
-
-	if d >= config.options.depth.soft then
-		return fam_groups.soft
-	end
-
-	return fam_groups.base
+  return groups[family.icon_key]
 end
 
 return M

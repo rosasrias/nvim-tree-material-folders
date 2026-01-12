@@ -1,116 +1,90 @@
 ---@class GpIconSet
 ---@field default string
 ---@field open string
----@field soft string|nil
----@field muted string|nil
 
 ---@type table<string, GpIconSet>
 local icons = {
+  images   = { default = "󰉏", open = "󰉐" },
+  icons    = { default = "󰀻", open = "󰀼" },
+  fonts    = { default = "󰛖", open = "󰛗" },
+  forms    = { default = "󰘫", open = "󰘬" },
+  ui       = { default = "󰏘", open = "󰏙" },
+  layout   = { default = "󰕮", open = "󰕯" },
 
-	core = {
-		default = "󰣞",
-		open = "󰷎",
-		soft = "󰣜",
-		muted = "󰣚",
-	},
+  core     = {
+    default = "󰣞",
+    open = "󰷎",
+  },
 
-	frontend = {
-		default = "󱧴",
-		open = "󱧵",
-		soft = "󱧶",
-		muted = "󱧷",
-	},
+  frontend = {
+    default = "󱧴",
+    open = "󱧵",
+  },
 
-	backend = {
-		default = "󰒋",
-		open = "󰒌",
-		soft = "󰒍",
-		muted = "󰒎",
-	},
+  backend  = {
+    default = "󰒋",
+    open = "󰒌",
+  },
 
-	state = {
-		default = "󰘦",
-		open = "󰘧",
-		soft = "󰘨",
-		muted = "󰘩",
-	},
+  state    = {
+    default = "󰘦",
+    open = "󰘧",
+  },
 
-	database = {
-		default = "󱋣",
-		open = "󱋤",
-		soft = "󱋥",
-		muted = "󱋦",
-	},
+  database = {
+    default = "󱋣",
+    open = "󱋤",
+  },
 
-	platform = {
-		default = "󰌢",
-		open = "󰌣",
-		soft = "󰌤",
-		muted = "󰌥",
-	},
+  platform = {
+    default = "󰌢",
+    open = "󰌣",
+  },
 
-	game = {
-		default = "󰐣",
-		open = "󰐤",
-		soft = "󰐥",
-		muted = "󰐦",
-	},
+  game     = {
+    default = "󰐣",
+    open = "󰐤",
+  },
 
-	data = {
-		default = "󰆼",
-		open = "󰆽",
-		soft = "󰆾",
-		muted = "󰆿",
-	},
+  data     = {
+    default = "󰆼",
+    open = "󰆽",
+  },
 
-	styles = {
-		default = "󰉘",
-		open = "󰮞",
-		soft = "󰮟",
-		muted = "󰮠",
-	},
+  styles   = {
+    default = "󰉘",
+    open = "󰮞",
+  },
 
-	assets = {
-		default = "󰚝",
-		open = "󰮟",
-		soft = "󰮠",
-		muted = "󰮡",
-	},
+  assets   = {
+    default = "󰚝",
+    open = "󰮟",
+  },
 
-	tests = {
-		default = "󱧸",
-		open = "󱧹",
-		soft = "󱧺",
-		muted = "󱧻",
-	},
+  tests    = {
+    default = "󱧸",
+    open = "󱧹",
+  },
 
-	tools = {
-		default = "󰆕",
-		open = "󰆖",
-		soft = "󰆗",
-		muted = "󰆘",
-	},
+  tools    = {
+    default = "󰆕",
+    open = "󰆖",
+  },
 
-	config = {
-		default = "",
-		open = "󱂀",
-		soft = "󱂁",
-		muted = "󱂂",
-	},
+  config   = {
+    default = "",
+    open = "󱂀",
+  },
 
-	build = {
-		default = "󰴋",
-		open = "󰴌",
-		soft = "󰴍",
-		muted = "󰴎",
-	},
+  build    = {
+    default = "󰴋",
+    open = "󰴌",
+  },
 
-	docs = {
-		default = "󱧺",
-		open = "󱧻",
-		soft = "󱧼",
-		muted = "󱧽",
-	},
+  docs     = {
+    default = "󱧺",
+    open = "󱧻",
+  },
 }
 
 return icons
