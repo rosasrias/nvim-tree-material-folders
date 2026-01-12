@@ -6,94 +6,109 @@
 ---@type table<string, GpColorVariants>
 local palette = {
 
+	-- Core / Source / App
 	core = {
-		base = "#7aa2f7",
-		soft = "#5d7ccf",
-		muted = "#3d4f7a",
+		base = "#89b4fa", -- blue
+		soft = "#7393d1",
+		muted = "#4c5f7a",
 	},
 
+	-- Frontend (React / UI)
 	frontend = {
-		base = "#9ece6a",
-		soft = "#7fa35a",
-		muted = "#4f6b3a",
+		base = "#a6e3a1", -- green
+		soft = "#86c892",
+		muted = "#4f6f5a",
 	},
 
+	-- Backend / API
 	backend = {
-		base = "#f7768e",
-		soft = "#d66175",
-		muted = "#8f3f4e",
+		base = "#f38ba8", -- red
+		soft = "#d0728c",
+		muted = "#7a4555",
 	},
 
+	-- State / Store
 	state = {
-		base = "#bb9af7",
-		soft = "#9a7bd4",
-		muted = "#5e4a8a",
+		base = "#cba6f7", -- mauve
+		soft = "#aa86d1",
+		muted = "#6a4f8a",
 	},
 
+	-- Database / Supabase
 	database = {
-		base = "#ff9e64",
-		soft = "#d98656",
-		muted = "#8a5a3a",
+		base = "#fab387", -- peach
+		soft = "#d39a74",
+		muted = "#8a5e45",
 	},
 
+	-- Platform / Mobile / Native
 	platform = {
-		base = "#2ac3de",
-		soft = "#219db5",
-		muted = "#15606e",
+		base = "#74c7ec", -- sapphire
+		soft = "#5fa4c4",
+		muted = "#3a667a",
 	},
 
+	-- Game / 3D / Engine
 	game = {
-		base = "#7dcfff",
-		soft = "#5fa5cc",
-		muted = "#3a667f",
+		base = "#94e2d5", -- teal
+		soft = "#76bdb3",
+		muted = "#4a7a72",
 	},
 
+	-- Data / Analytics
 	data = {
-		base = "#e0af68",
-		soft = "#b99156",
-		muted = "#7a603a",
+		base = "#f9e2af", -- yellow
+		soft = "#d1bc8f",
+		muted = "#7a6a45",
 	},
 
+	-- Styles / Theme
 	styles = {
-		base = "#73daca",
-		soft = "#5fb3a2",
-		muted = "#3d7266",
+		base = "#94e2d5", -- teal (lighter)
+		soft = "#78bfb3",
+		muted = "#4a7266",
 	},
 
+	-- Assets / Media
 	assets = {
-		base = "#a9b1d6",
-		soft = "#8b93b3",
-		muted = "#585e7a",
+		base = "#bac2de", -- lavender
+		soft = "#9aa1c1",
+		muted = "#5f637a",
 	},
 
+	-- Tests
 	tests = {
-		base = "#c0caf5",
-		soft = "#9aa3c7",
-		muted = "#60657a",
+		base = "#b4befe", -- periwinkle
+		soft = "#929bd4",
+		muted = "#5a5f8a",
 	},
 
+	-- Tooling / Scripts
 	tools = {
-		base = "#7aa2f7",
-		soft = "#5d7ccf",
-		muted = "#3d4f7a",
+		base = "#89b4fa",
+		soft = "#7393d1",
+		muted = "#4c5f7a",
 	},
 
+	-- Config / Infra
 	config = {
-		base = "#565f89",
-		soft = "#444a6a",
-		muted = "#2a2f44",
+		base = "#6c7086", -- overlay
+		soft = "#585c70",
+		muted = "#3a3d4f",
 	},
 
+	-- Build / Dist
 	build = {
-		base = "#ff9e64",
-		soft = "#d98656",
-		muted = "#8a5a3a",
+		base = "#fab387",
+		soft = "#d39a74",
+		muted = "#8a5e45",
 	},
 
+	-- Docs / Content
 	docs = {
-		base = "#89ddff",
-		soft = "#6bb3cc",
-		muted = "#43707f",
+		base = "#89dceb", -- sky
+		soft = "#6fb6c9",
+		muted = "#436f7a",
 	},
 }
 
