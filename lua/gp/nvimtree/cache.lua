@@ -3,18 +3,6 @@
 --
 -- This module caches folder resolution results to avoid
 -- recomputing family, icon and highlight on every render.
---
--- Cache key:
---   - node.absolute_path
---
--- Cache value:
---   {
---     family = GpFolderFamily,
---     icon   = string,
---     hl     = string|nil
---   }
---
--- This significantly improves performance on large trees.
 -- =========================================================
 
 local M = {}
@@ -26,32 +14,24 @@ local store = {}
 -- Cache helpers
 -- =========================================================
 
----Get cached value for a path.
----
 ---@param path string
 ---@return table|nil
 function M.get(path)
 	return store[path]
 end
 
----Set cached value for a path.
----
 ---@param path string
 ---@param value table
 function M.set(path, value)
 	store[path] = value
 end
 
----Check if a path is cached.
----
 ---@param path string
 ---@return boolean
 function M.has(path)
 	return store[path] ~= nil
 end
 
----Clear entire cache.
----Useful when reloading config or debugging.
 function M.clear()
 	store = {}
 end
@@ -62,22 +42,34 @@ end
 
 ---Resolve or return cached result.
 ---
----This helper allows patch.lua to stay clean and declarative.
+---If resolver is provided:
+---  - compute + cache on miss
+---
+---If resolver is NOT provided:
+---  - act as read-only cache lookup
 ---
 ---@param node table nvim-tree DirectoryNode
----@param resolver fun(): table|nil
+---@param resolver fun(): table|nil | nil
 ---@return table|nil
 function M.resolve(node, resolver)
+	-- No stable key → do not cache
 	if not node.absolute_path then
-		return resolver()
+		return resolver and resolver() or nil
 	end
 
 	local path = node.absolute_path
 
+	-- Fast path: cache hit
 	if M.has(path) then
 		return M.get(path)
 	end
 
+	-- Cache miss + no resolver → read-only lookup
+	if not resolver then
+		return nil
+	end
+
+	-- Compute & cache
 	local value = resolver()
 	if value then
 		M.set(path, value)
