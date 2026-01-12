@@ -1,5 +1,3 @@
--- lua/gp/nvimtree/icons.lua
-
 ---@class GpIconSet
 ---@field default string
 ---@field open string
