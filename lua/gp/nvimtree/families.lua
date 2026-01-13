@@ -39,9 +39,8 @@ local families = {
 			"composable[s]?",
 			"hook[s]?",
 			"template[s]?",
-			"type[S]?",
+			"types?",
 			"util[s]?",
-			"doc[s]?",
 		},
 	},
 

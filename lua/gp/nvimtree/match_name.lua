@@ -58,11 +58,11 @@ local matchers = {
 	handlers = "backend",
 
 	-- ===== Domain / Core =====
-	domain = "domain",
-	core = "domain",
-	entities = "domain",
-	models = "domain",
-	usecases = "domain",
+	domain = "core",
+	core = "core",
+	entities = "core",
+	models = "core",
+	usecases = "core",
 
 	-- ===== Database / Persistence =====
 	db = "database",
@@ -98,20 +98,19 @@ local matchers = {
 	__tests__ = "tests",
 
 	-- ===== Mobile =====
-	android = "mobile",
-	ios = "mobile",
+	android = "platform",
+	ios = "platform",
 
 	-- ===== Desktop =====
-	electron = "desktop",
-	tauri = "desktop",
-	desktop = "desktop",
+	electron = "platform",
+	tauri = "platform",
+	desktop = "platform",
 
 	-- ===== DevOps / Infra =====
-	docker = "infra",
-	kubernetes = "infra",
-	k8s = "infra",
-	terraform = "infra",
-	helm = "infra",
+	docker = "tools",
+	kubernetes = "tools",
+	terraform = "tools",
+	helm = "tools",
 }
 
 local M = {}

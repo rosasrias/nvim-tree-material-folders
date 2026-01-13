@@ -54,12 +54,12 @@ local matchers = {
 	{ "/src/db/", "database" },
 
 	-- Mobile
-	{ "/android/app/src/", "mobile" },
-	{ "/ios/", "mobile" },
+	{ "/android/app/src/", "platform" },
+	{ "/ios/", "platform" },
 
 	-- Desktop
-	{ "/src-tauri/", "desktop" },
-	{ "/electron/", "desktop" },
+	{ "/src-tauri/", "platform" },
+	{ "/electron/", "platform" },
 
 	-- Backend
 	{ "/cmd/", "backend" },
@@ -67,7 +67,7 @@ local matchers = {
 	{ "/services/", "backend" },
 
 	-- Game dev
-	{ "/assets/audio/", "audio" },
+	{ "/assets/audio/", "assets" },
 	{ "/assets/sprites/", "assets" },
 }
 
