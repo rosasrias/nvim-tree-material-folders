@@ -4,12 +4,35 @@
 
 ---@type table<string, GpIconSet>
 local icons = {
-  images   = { default = "󰉏", open = "󰉐" },
-  icons    = { default = "󰀻", open = "󰀼" },
-  fonts    = { default = "󰛖", open = "󰛗" },
-  forms    = { default = "󰘫", open = "󰘬" },
-  ui       = { default = "󰏘", open = "󰏙" },
-  layout   = { default = "󰕮", open = "󰕯" },
+  images   = {
+    default = "󰉏", -- solid
+    open    = "󱃫", -- outline
+  },
+
+  icons    = {
+    default = "󰀻",
+    open    = "󰀼",
+  },
+
+  fonts    = {
+    default = "󰛖",
+    open    = "󰛗",
+  },
+
+  forms    = {
+    default = "󱋣",
+    open    = "󱋤",
+  },
+
+  ui       = {
+    default = "󰏘",
+    open    = "󰸌",
+  },
+
+  layout   = {
+    default = "󰕮",
+    open    = "",
+  },
 
   core     = {
     default = "󰣞",
@@ -22,13 +45,13 @@ local icons = {
   },
 
   backend  = {
-    default = "󰒋",
-    open = "󰒌",
+    default = "󱧼",
+    open = "󱧽",
   },
 
   state    = {
-    default = "󰘦",
-    open = "󰘧",
+    default = "",
+    open = "󰮝",
   },
 
   database = {
