@@ -37,6 +37,11 @@ local families = {
 			"layouts?",
 			"containers?",
 			"composable[s]?",
+			"hook[s]?",
+			"template[s]?",
+			"type[S]?",
+			"util[s]?",
+			"doc[s]?",
 		},
 	},
 
