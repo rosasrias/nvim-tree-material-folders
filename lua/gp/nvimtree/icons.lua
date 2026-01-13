@@ -108,6 +108,36 @@ local icons = {
     default = "󱧺",
     open = "󱧻",
   },
+
+  src      = {
+    default = "󰉌",
+    open = "󰮜",
+  },
+
+  template = {
+    default = "󱧶",
+    open = "󱧷",
+  },
+
+  util     = {
+    default = "󱥾",
+    open = "󰮞",
+  },
+
+  hooks    = {
+    default = "󱧊",
+    open = "󱧋",
+  },
+
+  supabase = {
+    default = "󰚝",
+    open = "󰮟",
+  },
+
+  app      = {
+    default = "󱂵",
+    open = "󱂶",
+  },
 }
 
 return icons
