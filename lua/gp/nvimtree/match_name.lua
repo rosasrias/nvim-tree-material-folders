@@ -40,6 +40,10 @@ local matchers = {
 	pages = "frontend",
 	screens = "frontend",
 	widgets = "frontend",
+	hooks = "frontend",
+	templates = "frontend",
+	types = "frontend",
+	utils = "frontend",
 
 	-- ===== State management =====
 	store = "state",
@@ -57,12 +61,20 @@ local matchers = {
 	routes = "backend",
 	handlers = "backend",
 
-	-- ===== Domain / Core =====
+	-- ===== Domain =====
 	domain = "core",
-	core = "core",
 	entities = "core",
 	models = "core",
 	usecases = "core",
+
+	-- ===== CORE / SOURCE =====
+	src = "core",
+	source = "core",
+	app = "core",
+	apps = "core",
+	lib = "core",
+	libs = "core",
+	core = "core",
 
 	-- ===== Database / Persistence =====
 	db = "database",
