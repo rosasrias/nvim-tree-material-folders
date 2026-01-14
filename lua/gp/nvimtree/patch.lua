@@ -5,6 +5,7 @@
 
 local DirectoryNode = require("nvim-tree.node.directory")
 
+local families = require("gp.nvimtree.families")
 local by_path = require("gp.nvimtree.match_path")
 local by_name = require("gp.nvimtree.match_name")
 local by_sub = require("gp.nvimtree.match_subfamily")
@@ -27,28 +28,17 @@ function M.apply()
 		local res = original_icon(self)
 
 		local cached = cache.resolve(self, function()
-			-- -----------------------------
-			-- Resolve subfamily FIRST
-			-- -----------------------------
+			--Resolve subfamily FIRST (most specific)
 			local sub = by_sub.resolve(self)
 
-			-- -----------------------------
-			-- Resolve base family
-			-- -----------------------------
-			local family
-			if sub and sub.inherits then
-				family = require("gp.nvimtree.families")[sub.inherits]
-			else
-				family = by_path.resolve(self) or by_name.resolve(self.name)
-			end
+			--Resolve base family
+			local family = sub and families[sub.inherits] or by_path.resolve(self) or by_name.resolve(self.name)
 
 			if not family then
 				return
 			end
 
-			-- -----------------------------
-			-- Icon resolution
-			-- -----------------------------
+			--Icon resolution (sub > family)
 			local icon_key = sub and sub.icon_key or family.icon_key
 			local icon_set = icons[icon_key]
 			if not icon_set then
@@ -57,11 +47,11 @@ function M.apply()
 
 			local icon = (self.open and icon_set.open) or icon_set.default
 
-			-- -----------------------------
-			-- Highlight resolution
-			-- -----------------------------
-			local hl_key = sub and sub.color_key or family.icon_key
-			local highlight = hl.resolve(self, { icon_key = hl_key })
+			--Highlight resolution (sub color > family color)
+			local color_key = sub and sub.color_key or family.icon_key
+			local highlight = hl.resolve(self, {
+				icon_key = color_key,
+			})
 
 			return {
 				icon = icon,
@@ -82,12 +72,12 @@ function M.apply()
 	end
 
 	-- =====================================================
-	-- Name patch (reuse cached highlight)
+	-- Name patch (reuse same highlight)
 	-- =====================================================
-	---@diagnostic disable-next-line: duplicate-set-field
 	function DirectoryNode:highlighted_name()
 		local res = original_name(self)
 
+		---@diagnostic disable-next-line: missing-parameter
 		local cached = cache.resolve(self)
 		if not cached or not cached.hl then
 			return res
