@@ -19,12 +19,12 @@
 --   src/hooks           → hooks (state color)
 -- =========================================================
 
----@class GpSubFamily
+---@class NtmfSubFamily
 ---@field icon_key string   -- icon to use
 ---@field color_key string  -- palette / highlight key
 ---@field inherits string   -- base family key
 
----@type table<string, GpSubFamily>
+---@type table<string, NtmfSubFamily>
 local subfamilies = {
 
 	-- =====================================================
