@@ -33,6 +33,8 @@ local families = require("gp.nvimtree.families")
 
 ---@type table<string, string>
 local matchers = {
+	docs = "docs",
+	documentation = "docs",
 	-- ===== Frontend / UI =====
 	components = "frontend",
 	ui = "frontend",
