@@ -1,0 +1,175 @@
+*nvim_tree_material_folders.txt*  Material folder icons for nvim-tree
+
+==============================================================================
+INTRODUCTION                                    *nvim-tree-material-folders*
+
+nvim-tree-material-folders adds semantic folder icons and colors to nvim-tree.
+
+Folders are classified by their semantic role (frontend, backend, assets,
+tests, etc.) using path-based, name-based and subfamily resolution, inspired
+by VSCode icon themes but designed to be fully Lua-native and extensible.
+
+The goal is to provide a clean, professional tree with strong visual meaning,
+without visual noise.
+
+==============================================================================
+
+INSTALLATION                                  *nvim-tree-material-folders-install*
+
+Using lazy.nvim:
+
+>
+  {
+    "rosasrias/nvim-tree-material-folders",
+    dependencies = { "nvim-tree/nvim-tree.lua" },
+    config = function()
+      require("nvim_tree_material_folders").setup()
+    end,
+  }
+<
+
+IMPORTANT:
+The patch is applied lazily and should be enabled when nvim-tree attaches.
+
+Example:
+
+>
+require("nvim-tree").setup({
+  on_attach = function()
+    require("nvim_tree_material_folders").apply()
+  end,
+})
+<
+
+==============================================================================
+
+SETUP                                         *nvim-tree-material-folders-setup*
+
+Minimal setup:
+
+>
+  require("nvim_tree_material_folders").setup()
+<
+
+All options are optional. The plugin works out-of-the-box with sensible
+defaults.
+
+==============================================================================
+
+ARCHITECTURE                                *nvim-tree-material-folders-architecture*
+
+Resolution order (highest priority first):
+
+1. Subfamily match
+   Example:
+     src/components/forms   → forms
+     assets/images          → images
+
+2. Path-based family match
+   Example:
+     src/api/**             → backend
+     src/components/**      → frontend
+
+3. Name-based family match
+   Example:
+     components/            → frontend
+     services/              → backend
+     docs/                  → docs
+
+Subfamilies refine a base family by providing a more specific icon and color.
+
+==============================================================================
+
+FAMILIES                                     *nvim-tree-material-folders-families*
+
+Families represent broad semantic roles:
+
+- core        (src, app, lib)
+- frontend    (components, ui, pages)
+- backend     (api, server, services)
+- state       (store, hooks)
+- database    (db, migrations, prisma)
+- styles      (css, scss, themes)
+- assets      (images, icons, fonts)
+- tests       (tests, specs, e2e)
+- tools       (scripts, cli)
+- config      (config, ci)
+- build       (dist, build)
+- docs        (docs, guides)
+
+Families are technology-agnostic.
+
+==============================================================================
+
+SUBFAMILIES                               *nvim-tree-material-folders-subfamilies*
+
+Subfamilies allow refining a family with more precise semantics.
+
+Examples:
+
+- assets/images     → images
+- components/forms  → forms
+- src/hooks         → hooks
+- src/types         → types
+- src/utils         → utils
+
+Subfamilies define:
+- icon_key
+- color_key
+- inherited family
+
+==============================================================================
+
+CUSTOMIZATION                            *nvim-tree-material-folders-custom*
+
+You can customize:
+
+- Icons
+- Colors (palette)
+- Families
+- Subfamilies
+- Path matchers
+- Name matchers
+
+Override only what you need.
+
+Example:
+
+>
+require("nvim_tree_material_folders").setup({
+  overrides = {
+    icons = {
+      frontend = { default = "", open = "" },
+    },
+  },
+})
+<
+
+==============================================================================
+
+PERFORMANCE                             *nvim-tree-material-folders-performance*
+
+- Icons and highlights are cached per node
+- Cache is cleared when nvim-tree closes
+- The patch is applied only once
+- No work is done if nvim-tree is not open
+
+The plugin is designed to have minimal impact on startup time.
+
+==============================================================================
+
+REQUIREMENTS                           *nvim-tree-material-folders-requirements*
+
+- Neovim >= 0.9
+- nvim-tree
+- Nerd Font enabled
+
+==============================================================================
+
+AUTHOR                                   *nvim-tree-material-folders-author*
+
+rosasrias
+
+==============================================================================
+
+vim:tw=78:ts=2:sw=2:et:
