@@ -1,35 +1,47 @@
-# gp.nvimtree
+# nvim-tree-material-folders
 
-Folder icons, colors and semantics for **nvim-tree**.
+Semantic folder icons and colors for **nvim-tree**, inspired by VSCode
+icon themes and designed for clean, professional project trees.
 
-`gp.nvimtree` brings semantic folder families, depth-aware icons,
-and color hierarchy to Neovim — inspired by VSCode icon themes,
-but fully configurable and extensible.
+![Overview](images/overview.png)
 
 ---
 
 ## ✨ Features
 
 - 📂 **Semantic folder families**
-  - frontend, backend, domain, database, assets, mobile, desktop, infra, etc
-- 🔥 **Path-based matching**
-  - `src/api/**`, `src/ui/**`, `cmd/**`, `android/app/**`
-- 🎨 **Depth-aware icons & colors**
-  - deep folders fade visually (less noise)
-- 🧠 **Parity**
-  - same mental model, same hierarchy rules
-- ⚙️ **Fully configurable**
-  - override families, icons, highlights, matchers
-- 🧩 **Clean architecture**
-  - isolated patch, reusable modules, no magic
+  - core, frontend, backend, state, database, assets, tests, docs, tools, etc.
+- 🧩 **Subfamilies**
+  - `components/forms`, `assets/images`, `src/hooks`, `src/types`, …
+- 🧠 **Smart resolution pipeline**
+  - subfamily → path → name
+- 🎨 **Material-style colors**
+  - consistent, readable, non-distracting
+- ⚡ **Lazy & efficient**
+  - patch applied only when nvim-tree is open
+- 🧼 **Clean architecture**
+  - resolver, cache, patch, highlights separated
+
+---
+
+## 🔍 Why?
+
+nvim-tree by default treats all folders the same.
+
+This plugin adds **meaning**.
+
+Just like VSCode icon themes, folders communicate their role instantly:
+frontend, backend, assets, config, tests — without reading names.
+
+![Comparison](images/comparison.png)
 
 ---
 
 ## 📦 Requirements
 
-- Neovim >= 0.9
+- Neovim ≥ 0.9
 - [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
-- Nerd Font (for icons)
+- Nerd Font enabled
 
 ---
 
@@ -39,133 +51,151 @@ but fully configurable and extensible.
 
 ```lua
 {
-  "rosasrias/gp.nvimtree",
+  "rosasrias/nvim-tree-material-folders",
   dependencies = { "nvim-tree/nvim-tree.lua" },
-  config = function()
-    require("gp.nvimtree").setup()
+} 
+```
+
+## 🚀 Quick Start (recommended)
+
+```lua
+require("nvim_tree_material_folders").setup()
+```
+
+Enable the patch lazily when nvim-tree attaches:
+```lua
+require("nvim-tree").setup({
+  on_attach = function()
+    require("nvim_tree_material_folders").apply()
   end,
-}
+})
+```
+- ✔ No startup overhead
+- ✔ Patch applied once
+- ✔ Cache cleared when nvim-tree closes
+
+## 🧠 Resolution Pipeline 
+
+Folder semantics are resolved in this order:
+
+### 1️⃣ Subfamily (highest priority)
+
+Matches specific paths:
+```bash
+assets/images        → images
+components/forms     → forms
+src/hooks            → hooks
 ```
 
-## 🚀 Quick Start
-Minimal setup (recommended):
+Each subfamily defines:
+- icon
+- color
+- inherited family
 
-```lua
-require("gp.nvimtree").setup()
+### 2️⃣ Path-based family
+
+Matches semantic paths:
+```bash
+src/api/**           → backend
+src/components/**    → frontend
+src/db/**            → database
+```
+This allows the same folder name to mean different things
+depending on location.
+
+### 3️⃣ Name-based family (fallback)
+
+Matches by folder name only:
+```bash
+components/          → frontend
+services/            → backend
+docs/                → docs
 ```
 
-That's it.
-Default presets already cover: 
+## 🎨 Folder Families 
+Families represent roles, not technologies:
 
-- Web 
-- Backend 
-- Mobile 
-- Desktop 
-- Monorepos
+- core
+- frontend
+- backend
+- state
+- database
+- styles
+- assets
+- tests
+- docs
+- tools
+- config
+- build
 
-## ⚙️ Configuration 
-All configuration is **optional**.
-Only override what you need.
+You can extend or override them freely.
 
+## 🧩 Subfamilies 
+Subfamilies refine a family with more precise semantics:
+
+Examples included:
+- `assets/images`
+- `assets/icons`
+- `components/forms`
+- `components/ui`
+- `src/hooks`
+- `src/types`
+- `src/utils`
+
+Each subfamily can override:
+- `icon`
+- `color`
+
+## ⚙️ Customization
+
+Everything is optional.
+
+Override only what you need:
 ```lua
-require("gp.nvimtree").setup({
-  families = {
-    backend = {
-      icon = "󰒋",
-      icon_key = "backend",
-      color = "#E06C75",
+require("nvim_tree_material_folders").setup({
+  overrides = {
+    icons = {
+      frontend = {
+        default = "󰉋",
+        open = "󰉋",
+      },
     },
-  },
-
-  icons = {
-    backend = {
-      default = "󰒋",
-      open = "󰒌",
-      soft = "󰒋",
-      subtle = "󰒋",
-    },
-  },
-
-  highlights = {
-    backend = {
-      base = "GpBackend",
-      soft = "GpBackendSoft",
-      subtle = "GpBackendSubtle",
-    },
-  },
-
-  match_path = {
-    { "/cmd/", "backend" },
-    { "/internal/", "backend" },
-    { "/android/app/", "mobile" },
-  },
-
-  match_name = {
-    api = "backend",
-    services = "backend",
-    domain = "domain",
   },
 })
 ```
 
-## 🧠 Resolution Pipeline 
+## ⚡ Performance 
 
-Folder resolution follows this order: 
-1. **Path match**
- `src/api/**` → backend
+- Results cached per node
+- Cache cleared on NvimTreeClose
+- No work done if nvim-tree is not open
+- No filesystem scanning
+- O(1) lookup after first resolve
 
-2. **Name match**
-`components/` → frontend
+Designed to be safe even on large monorepos.
 
-3. **Depth logic**
-    - depth ≥ 4 → subtle
-    - depth ≥ 2 → soft
-    - top-level → strong
+## 🧪 Debugging
 
-This is **exactly how VSCode icon themes work**.
+If a folder does not look right:
 
-## 🎨 Folder Families 
+1. Check subfamily match
+2. Check path-based match
+3. Check name-based match
 
-Families represent **roles**, not technologies. 
-
-Examples: 
-
-- frontend
-- backend
-- domain
-- database
-- state
-- styles
-- assets
-- mobile
-- desktop
-- infra
-
-You can add your own.
+(Debug command planned)
 
 ## 🧩 Supported Architectures
 
 Works great with:
 
-- Clean Architecture
-- Hexagonal Architecture
-- Monorepos
 - Frontend apps
 - Backend services
+- Monorepos
+- Clean / Hexagonal Architecture
 - Mobile (Android / iOS)
 - Desktop (Electron / Tauri)
-- Game / tooling projects
-
-## 🛠️ Debugging
-
-If a folder doesn’t get the icon you expect:
-
-- check path match first
-- then name match
-- then depth
-
-(Planned: :GpNvimTreeDebug)
+- Framework-specific subfamilies coming next 👀
 
 ## 📜 License
 
-MIT @
+MIT © rosasrias
