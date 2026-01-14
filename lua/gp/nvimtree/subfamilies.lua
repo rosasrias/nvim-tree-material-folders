@@ -76,37 +76,37 @@ local subfamilies = {
 	-- =========================
 	-- Frontend (generic buckets)
 	-- =========================
-	["/components/"] = {
+	["/src/components/"] = {
 		inherits = "frontend",
 		icon_key = "components",
 		color_key = "frontend",
 	},
 
-	["/hooks/"] = {
+	["/src/hooks/"] = {
 		inherits = "frontend",
 		icon_key = "hooks",
 		color_key = "state",
 	},
 
-	["/pages/"] = {
+	["/src/pages/"] = {
 		inherits = "frontend",
 		icon_key = "pages",
 		color_key = "frontend",
 	},
 
-	["/templates/"] = {
+	["/src/templates/"] = {
 		inherits = "frontend",
 		icon_key = "templates",
 		color_key = "templates",
 	},
 
-	["/types/"] = {
+	["/src/types/"] = {
 		inherits = "frontend",
 		icon_key = "types",
 		color_key = "types",
 	},
 
-	["/utils/"] = {
+	["/src/utils/"] = {
 		inherits = "frontend",
 		icon_key = "utils",
 		color_key = "tools",
