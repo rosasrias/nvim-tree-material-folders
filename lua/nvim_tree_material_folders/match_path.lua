@@ -9,7 +9,7 @@
 -- different semantic roles (VSCode-style behavior).
 -- =========================================================
 
-local families = require("gp.nvimtree.families")
+local families = require("nvim_tree_material_folders.families")
 
 local M = {}
 
@@ -78,7 +78,7 @@ end)
 -- =========================================================
 
 ---@param node table nvim-tree DirectoryNode
----@return GpFolderFamily|nil
+---@return NtmfFolderFamily|nil
 function M.resolve(node)
 	if not node or not node.absolute_path then
 		return
