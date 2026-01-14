@@ -18,10 +18,10 @@
 
 local DirectoryNode = require("nvim-tree.node.directory")
 
-local resolver = require("gp.nvimtree.resolver")
-local icons = require("gp.nvimtree.icons")
-local hl = require("gp.nvimtree.highlights")
-local cache = require("gp.nvimtree.cache")
+local resolver = require("nvim_tree_material_folders.resolver")
+local icons = require("nvim_tree_material_folders.icons")
+local hl = require("nvim_tree_material_folders.highlights")
+local cache = require("nvim_tree_material_folders.cache")
 
 -- Preserve original nvim-tree behavior
 local original_icon = DirectoryNode.highlighted_icon
@@ -98,6 +98,7 @@ function M.apply()
 		local res = original_name(self)
 
 		-- Reuse cached highlight (do not recompute)
+		---@diagnostic disable-next-line: missing-parameter
 		local cached = cache.resolve(self)
 		if cached and cached.hl then
 			res.hl = { cached.hl }
