@@ -114,7 +114,7 @@ local icons = {
 		open = "󰮜",
 	},
 
-	template = {
+	templates = {
 		default = "󱧶",
 		open = "󱧷",
 	},
