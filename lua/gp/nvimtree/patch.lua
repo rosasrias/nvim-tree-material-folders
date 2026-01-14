@@ -19,78 +19,83 @@ local original_name = DirectoryNode.highlighted_name
 local M = {}
 
 function M.apply()
-  -- =====================================================
-  -- Icon patch
-  -- =====================================================
-  ---@diagnostic disable-next-line: duplicate-set-field
-  function DirectoryNode:highlighted_icon()
-    local res = original_icon(self)
+	-- =====================================================
+	-- Icon patch
+	-- =====================================================
+	---@diagnostic disable-next-line: duplicate-set-field
+	function DirectoryNode:highlighted_icon()
+		local res = original_icon(self)
 
-    local cached = cache.resolve(self, function()
-      -- -----------------------------
-      -- Resolve family & subfamily
-      -- -----------------------------
-      local family = by_path.resolve(self) or by_name.resolve(self.name)
-      if not family then
-        return
-      end
+		local cached = cache.resolve(self, function()
+			-- -----------------------------
+			-- Resolve subfamily FIRST
+			-- -----------------------------
+			local sub = by_sub.resolve(self)
 
-      local sub = by_sub.resolve(self)
+			-- -----------------------------
+			-- Resolve base family
+			-- -----------------------------
+			local family
+			if sub and sub.inherits then
+				family = require("gp.nvimtree.families")[sub.inherits]
+			else
+				family = by_path.resolve(self) or by_name.resolve(self.name)
+			end
 
-      -- -----------------------------
-      -- Icon resolution
-      -- -----------------------------
-      local icon_key = sub and sub.icon_key or family.icon_key
-      local icon_set = icons[icon_key]
-      if not icon_set then
-        return
-      end
+			if not family then
+				return
+			end
 
-      local icon = (self.open and icon_set.open) or icon_set.default
+			-- -----------------------------
+			-- Icon resolution
+			-- -----------------------------
+			local icon_key = sub and sub.icon_key or family.icon_key
+			local icon_set = icons[icon_key]
+			if not icon_set then
+				return
+			end
 
-      -- -----------------------------
-      -- Highlight resolution
-      -- -----------------------------
-      -- subfamily can override color, otherwise fallback to family
-      local color_family = sub or family
-      local highlight = hl.resolve(self, color_family)
+			local icon = (self.open and icon_set.open) or icon_set.default
 
-      return {
-        icon = icon,
-        hl = highlight,
-      }
-    end)
+			-- -----------------------------
+			-- Highlight resolution
+			-- -----------------------------
+			local hl_key = sub and sub.color_key or family.icon_key
+			local highlight = hl.resolve(self, { icon_key = hl_key })
 
-    if not cached then
-      return res
-    end
+			return {
+				icon = icon,
+				hl = highlight,
+			}
+		end)
 
-    if cached.icon then
-      res.str = cached.icon
-    end
+		if not cached then
+			return res
+		end
 
-    if cached.hl then
-      res.hl = { cached.hl }
-    end
+		res.str = cached.icon
+		if cached.hl then
+			res.hl = { cached.hl }
+		end
 
-    return res
-  end
+		return res
+	end
 
-  -- =====================================================
-  -- Name patch (same color as icon)
-  -- =====================================================
-  ---@diagnostic disable-next-line: duplicate-set-field
-  function DirectoryNode:highlighted_name()
-    local res = original_name(self)
+	-- =====================================================
+	-- Name patch (reuse cached highlight)
+	-- =====================================================
+	---@diagnostic disable-next-line: duplicate-set-field
+	function DirectoryNode:highlighted_name()
+		local res = original_name(self)
 
-    local cached = cache.resolve(self)
-    if not cached or not cached.hl then
-      return res
-    end
+		local cached = cache.resolve(self)
+		if not cached or not cached.hl then
+			return res
+		end
 
-    res.hl = { cached.hl }
-    return res
-  end
+		res.hl = { cached.hl }
+		return res
+	end
 end
 
 return M
