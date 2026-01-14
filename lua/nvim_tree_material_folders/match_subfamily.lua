@@ -10,7 +10,7 @@
 --   - Longest path match wins (most specific)
 -- =========================================================
 
-local subfamilies = require("lua.nvim_tree_material_folders.subfamilies")
+local subfamilies = require("nvim_tree_material_folders.subfamilies")
 
 local M = {}
 
