@@ -4,140 +4,160 @@
 
 ---@type table<string, GpIconSet>
 local icons = {
-  images   = {
-    default = "󰉏", -- solid
-    open    = "󱃫", -- outline
-  },
+	images = {
+		default = "󰉏", -- solid
+		open = "󱃫", -- outline
+	},
 
-  icons    = {
-    default = "󰀻",
-    open    = "󰀼",
-  },
+	icons = {
+		default = "󰀻",
+		open = "󰀼",
+	},
 
-  fonts    = {
-    default = "󰛖",
-    open    = "󰛗",
-  },
+	fonts = {
+		default = "󰛖",
+		open = "󰛗",
+	},
 
-  forms    = {
-    default = "󱋣",
-    open    = "󱋤",
-  },
+	forms = {
+		default = "󱋣",
+		open = "󱋤",
+	},
 
-  ui       = {
-    default = "󰏘",
-    open    = "󰸌",
-  },
+	ui = {
+		default = "󰏘",
+		open = "󰸌",
+	},
 
-  layout   = {
-    default = "󰕮",
-    open    = "",
-  },
+	layout = {
+		default = "󰕮",
+		open = "",
+	},
 
-  core     = {
-    default = "󰣞",
-    open = "󰷎",
-  },
+	core = {
+		default = "󰣞",
+		open = "󰷎",
+	},
 
-  frontend = {
-    default = "󱧴",
-    open = "󱧵",
-  },
+	frontend = {
+		default = "󱧴",
+		open = "󱧵",
+	},
 
-  backend  = {
-    default = "󱧼",
-    open = "󱧽",
-  },
+	backend = {
+		default = "󱧼",
+		open = "󱧽",
+	},
 
-  state    = {
-    default = "",
-    open = "󰮝",
-  },
+	state = {
+		default = "",
+		open = "󰮝",
+	},
 
-  database = {
-    default = "󱋣",
-    open = "󱋤",
-  },
+	database = {
+		default = "󱋣",
+		open = "󱋤",
+	},
 
-  platform = {
-    default = "󰌢",
-    open = "󰌣",
-  },
+	platform = {
+		default = "󰌢",
+		open = "󰌣",
+	},
 
-  game     = {
-    default = "󰐣",
-    open = "󰐤",
-  },
+	game = {
+		default = "󰐣",
+		open = "󰐤",
+	},
 
-  data     = {
-    default = "󰆼",
-    open = "󰆽",
-  },
+	data = {
+		default = "󰆼",
+		open = "󰆽",
+	},
 
-  styles   = {
-    default = "󰉘",
-    open = "󰮞",
-  },
+	styles = {
+		default = "󰉘",
+		open = "󰮞",
+	},
 
-  assets   = {
-    default = "󰚝",
-    open = "󰮟",
-  },
+	assets = {
+		default = "󰚝",
+		open = "󰮟",
+	},
 
-  tests    = {
-    default = "󱧸",
-    open = "󱧹",
-  },
+	tests = {
+		default = "󱧸",
+		open = "󱧹",
+	},
 
-  tools    = {
-    default = "󰆕",
-    open = "󰆖",
-  },
+	tools = {
+		default = "󰆕",
+		open = "󰆖",
+	},
 
-  config   = {
-    default = "",
-    open = "󱂀",
-  },
+	config = {
+		default = "",
+		open = "󱂀",
+	},
 
-  build    = {
-    default = "󰴋",
-    open = "󰴌",
-  },
+	build = {
+		default = "󰴋",
+		open = "󰴌",
+	},
 
-  docs     = {
-    default = "󱧺",
-    open = "󱧻",
-  },
+	docs = {
+		default = "󱧺",
+		open = "󱧻",
+	},
 
-  src      = {
-    default = "󰉌",
-    open = "󰮜",
-  },
+	src = {
+		default = "󰉌",
+		open = "󰮜",
+	},
 
-  template = {
-    default = "󱧶",
-    open = "󱧷",
-  },
+	template = {
+		default = "󱧶",
+		open = "󱧷",
+	},
 
-  util     = {
-    default = "󱥾",
-    open = "󰮞",
-  },
+	util = {
+		default = "󱥾",
+		open = "󰮞",
+	},
 
-  hooks    = {
-    default = "󱧊",
-    open = "󱧋",
-  },
+	hooks = {
+		default = "󱧊",
+		open = "󱧋",
+	},
 
-  supabase = {
-    default = "󰚝",
-    open = "󰮟",
-  },
+	supabase = {
+		default = "󰚝",
+		open = "󰮟",
+	},
 
-  app      = {
-    default = "󱂵",
-    open = "󱂶",
-  },
+	app = {
+		default = "󱂵",
+		open = "󱂶",
+	},
+
+	components = {
+		default = "󱧶",
+		open = "󱧷",
+	},
+
+	pages = {
+		default = "󱑾",
+		open = "󱑿",
+	},
+
+	types = {
+		default = "󰉍",
+		open = "󱃭",
+	},
+
+	utils = {
+		default = "󰲂",
+		open = "󰲃",
+	},
 }
 
 return icons
