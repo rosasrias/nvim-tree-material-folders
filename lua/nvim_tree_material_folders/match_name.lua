@@ -11,7 +11,7 @@
 -- carry semantic meaning regardless of their location.
 -- =========================================================
 
-local families = require("gp.nvimtree.families")
+local families = require("nvim_tree_material_folders.families")
 
 -- =========================================================
 -- Name match definitions
