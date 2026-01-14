@@ -1,12 +1,12 @@
 local M = {}
+local applied = false
 
 ---Setup gp-nvim-tree-icons.
 ---
----This function initializes the plugin lifecycle:
----  1. Applies user configuration
----  2. Creates highlight groups (semantic + depth-aware)
----  3. Re-applies highlights on colorscheme change
----  4. Monkey-patches nvim-tree to inject icons & highlights
+---Responsabilidades:
+---  1. Configuración
+---  2. Creación de highlights
+---  3. Autocmd de ColorScheme
 ---
 ---@param opts GpNvimTreeIconsConfig|nil
 function M.setup(opts)
@@ -18,15 +18,21 @@ function M.setup(opts)
 	highlights.setup()
 
 	-- Recreate highlights after colorscheme changes
-	-- (most colorschemes clear custom highlight groups)
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		group = vim.api.nvim_create_augroup("GpNvimTreeHighlights", { clear = true }),
 		callback = function()
 			highlights.setup()
 		end,
 	})
+end
 
-	-- Apply nvim-tree DirectoryNode patch
+---Apply nvim-tree patch (lazy, one-time)
+function M.apply()
+	if applied then
+		return
+	end
+
+	applied = true
 	require("gp.nvimtree.patch").apply()
 end
 
