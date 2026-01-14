@@ -10,7 +10,7 @@
 --   - Longest path match wins (most specific)
 -- =========================================================
 
-local subfamilies = require("gp.nvimtree.subfamilies")
+local subfamilies = require("lua.nvim_tree_material_folders.subfamilies")
 
 local M = {}
 
@@ -40,7 +40,7 @@ local function get_sorted_patterns()
 end
 
 ---@param node table nvim-tree DirectoryNode
----@return GpSubFamily|nil
+---@return NtmfSubFamily|nil
 function M.resolve(node)
 	if not node or not node.absolute_path then
 		return
