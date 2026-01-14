@@ -16,9 +16,9 @@
 -- This mirrors VSCode icon theme behavior.
 -- =========================================================
 
-local by_path = require("gp.nvimtree.match_path")
-local by_name = require("gp.nvimtree.match_name")
-local by_sub = require("gp.nvimtree.match_subfamily")
+local by_path = require("nvim_tree_material_folders.match_path")
+local by_name = require("nvim_tree_material_folders.match_name")
+local by_sub = require("nvim_tree_material_folders.match_subfamily")
 
 local M = {}
 
