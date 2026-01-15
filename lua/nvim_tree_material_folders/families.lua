@@ -15,8 +15,7 @@
 ---@field match string[]    -- name match patterns (optional usage)
 
 ---@type table<string, NtmfFolderFamily>
-local config = require("nvim_tree_material_folders.config")
-local base_families = {
+local families = {
 
 	-- ===== CORE / SOURCE =====
 	core = {
@@ -257,7 +256,6 @@ local base_families = {
 		icon_key = "docs",
 		color_key = "docs",
 		match = {
-			"doc",
 			"doc[s]?",
 			"documentation",
 			"guide[s]?",
@@ -267,4 +265,4 @@ local base_families = {
 	},
 }
 
-return vim.tbl_deep_extend("force", {}, base_families, config.options.overrides.families or {})
+return families

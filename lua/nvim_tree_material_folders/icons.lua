@@ -11,9 +11,7 @@
 ---@field open string
 
 ---@type table<string, NtmfIconSet>
-
-local config = require("nvim_tree_material_folders.config")
-local base_icons = {
+local icons = {
 
 	-- ===== ASSETS =====
 	images = {
@@ -177,4 +175,4 @@ local base_icons = {
 	},
 }
 
-return vim.tbl_deep_extend("force", {}, base_icons, config.options.overrides.icons or {})
+return icons
