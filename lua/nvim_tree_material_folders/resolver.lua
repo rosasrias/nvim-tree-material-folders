@@ -5,13 +5,13 @@
 -- used by the nvim-tree patch.
 --
 -- Its responsibility is to determine:
---   - which icon_key to use
---   - which color_key to use
+--   - which icon_key to use   (icons.lua)
+--   - which color_key to use  (palette.lua / highlights)
 --
 -- Resolution priority (highest → lowest):
---   1. Subfamily (match_subfamily)
---   2. Path-based family (match_path)
---   3. Name-based family (match_name)
+--   1. Subfamily      (match_subfamily)
+--   2. Path-based     (match_path)
+--   3. Name-based     (match_name)
 --
 -- This mirrors VSCode icon theme behavior.
 -- =========================================================
@@ -45,7 +45,7 @@ function M.resolve(node)
 	-- -----------------------------------------------------
 	-- 1. Subfamily (highest priority)
 	-- -----------------------------------------------------
-	-- Subfamilies are the most specific semantic match
+	-- Subfamilies represent the most specific semantics
 	-- (e.g. /src/components/forms → forms)
 	--
 	local sub = by_sub.resolve(node)
@@ -68,9 +68,19 @@ function M.resolve(node)
 		return
 	end
 
+	-- -----------------------------------------------------
+	-- 3. Family resolution
+	-- -----------------------------------------------------
+	-- icon_key: used to select folder icon
+	-- color_key: used to resolve highlight group
+	--
+	-- IMPORTANT:
+	-- icon_key and color_key are intentionally decoupled.
+	-- Do NOT assume they are the same.
+	--
 	return {
 		icon_key = family.icon_key,
-		color_key = family.icon_key,
+		color_key = family.color_key or family.icon_key,
 	}
 end
 

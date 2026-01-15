@@ -2,12 +2,17 @@
 -- Folder family definitions for nvim-tree-material-folders
 --
 -- Families represent high-level semantic meaning
--- inferred from folder names.
+-- inferred from folder names or paths.
+--
+-- Each family defines:
+--   - icon_key  → used by icons.lua
+--   - color_key → used by palette.lua / highlights.lua
 -- =========================================================
 
 ---@class NtmfFolderFamily
----@field icon_key string
----@field match string[]
+---@field icon_key string   -- icon identifier
+---@field color_key string  -- color / highlight identifier
+---@field match string[]    -- name match patterns (optional usage)
 
 ---@type table<string, NtmfFolderFamily>
 local families = {
@@ -15,6 +20,7 @@ local families = {
 	-- ===== CORE / SOURCE =====
 	core = {
 		icon_key = "core",
+		color_key = "core",
 		match = {
 			"src",
 			"source",
@@ -32,6 +38,7 @@ local families = {
 	-- ===== FRONTEND / UI =====
 	frontend = {
 		icon_key = "frontend",
+		color_key = "frontend",
 		match = {
 			"frontend",
 			"client",
@@ -54,6 +61,7 @@ local families = {
 	-- ===== BACKEND / API =====
 	backend = {
 		icon_key = "backend",
+		color_key = "backend",
 		match = {
 			"backend",
 			"server",
@@ -71,6 +79,7 @@ local families = {
 	-- ===== STATE / DOMAIN =====
 	state = {
 		icon_key = "state",
+		color_key = "state",
 		match = {
 			"store[s]?",
 			"state[s]?",
@@ -88,6 +97,7 @@ local families = {
 	-- ===== DATABASE / DATA =====
 	database = {
 		icon_key = "database",
+		color_key = "database",
 		match = {
 			"db",
 			"database[s]?",
@@ -106,6 +116,7 @@ local families = {
 	-- ===== DESKTOP / MOBILE =====
 	platform = {
 		icon_key = "platform",
+		color_key = "platform",
 		match = {
 			"android",
 			"ios",
@@ -122,6 +133,7 @@ local families = {
 	-- ===== GAME DEV =====
 	game = {
 		icon_key = "game",
+		color_key = "game",
 		match = {
 			"game",
 			"games",
@@ -137,6 +149,7 @@ local families = {
 	-- ===== DATA / ML =====
 	data = {
 		icon_key = "data",
+		color_key = "data",
 		match = {
 			"data",
 			"datasets?",
@@ -151,6 +164,7 @@ local families = {
 	-- ===== STYLES / DESIGN =====
 	styles = {
 		icon_key = "styles",
+		color_key = "styles",
 		match = {
 			"styles?",
 			"css",
@@ -166,6 +180,7 @@ local families = {
 	-- ===== ASSETS / MEDIA =====
 	assets = {
 		icon_key = "assets",
+		color_key = "assets",
 		match = {
 			"assets?",
 			"public",
@@ -181,6 +196,7 @@ local families = {
 	-- ===== TESTING =====
 	tests = {
 		icon_key = "tests",
+		color_key = "tests",
 		match = {
 			"test[s]?",
 			"testing",
@@ -195,6 +211,7 @@ local families = {
 	-- ===== TOOLING =====
 	tooling = {
 		icon_key = "tools",
+		color_key = "tooling",
 		match = {
 			"tools?",
 			"scripts?",
@@ -208,6 +225,7 @@ local families = {
 	-- ===== CONFIG / META =====
 	config = {
 		icon_key = "config",
+		color_key = "config",
 		match = {
 			"config[s]?",
 			"setting[s]?",
@@ -222,6 +240,7 @@ local families = {
 	-- ===== BUILD / DIST =====
 	build = {
 		icon_key = "build",
+		color_key = "build",
 		match = {
 			"build",
 			"dist",
@@ -235,6 +254,7 @@ local families = {
 	-- ===== DOCS =====
 	docs = {
 		icon_key = "docs",
+		color_key = "docs",
 		match = {
 			"doc[s]?",
 			"documentation",
