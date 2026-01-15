@@ -15,6 +15,10 @@
 
 local M = {}
 
+-- =========================================================
+-- Defaults (DO NOT MUTATE)
+-- =========================================================
+
 ---@type NtmfConfig
 M.defaults = {
 	-- Enable path-based resolution (src/components, src/api, etc)
@@ -32,13 +36,21 @@ M.defaults = {
 	},
 }
 
+-- =========================================================
+-- Runtime options (mutable)
+-- =========================================================
+
 ---@type NtmfConfig
-M.options = M.defaults
+M.options = vim.tbl_deep_extend("force", {}, M.defaults)
+
+-- =========================================================
+-- Setup
+-- =========================================================
 
 ---Setup plugin configuration
 ---@param opts NtmfConfig|nil
 function M.setup(opts)
-	M.options = vim.tbl_deep_extend("force", M.defaults, opts or {})
+	M.options = vim.tbl_deep_extend("force", {}, M.defaults, opts or {})
 end
 
 return M

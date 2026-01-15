@@ -25,7 +25,8 @@
 ---@field inherits string   -- base family key
 
 ---@type table<string, NtmfSubFamily>
-local subfamilies = {
+local config = require("nvim_tree_material_folders.config")
+local base_subfamilies = {
 
 	-- =====================================================
 	-- Assets
@@ -43,6 +44,24 @@ local subfamilies = {
 	},
 
 	["/assets/fonts"] = {
+		inherits = "assets",
+		icon_key = "fonts",
+		color_key = "fonts",
+	},
+
+	["/src/assets/images"] = {
+		inherits = "assets",
+		icon_key = "images",
+		color_key = "images",
+	},
+
+	["/src/assets/icons"] = {
+		inherits = "assets",
+		icon_key = "icons",
+		color_key = "icons",
+	},
+
+	["/src/assets/fonts"] = {
 		inherits = "assets",
 		icon_key = "fonts",
 		color_key = "fonts",
@@ -125,4 +144,4 @@ local subfamilies = {
 	},
 }
 
-return subfamilies
+return vim.tbl_deep_extend("force", {}, base_subfamilies, config.options.overrides.subfamilies or {})

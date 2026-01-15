@@ -11,7 +11,9 @@
 -- =========================================================
 
 ---@type table<string, string>
-local palette = {
+local config = require("nvim_tree_material_folders.config")
+
+local base_palette = {
 
 	-- ===== CORE =====
 	core = "#89B4FA", -- src, app, core
@@ -43,4 +45,10 @@ local palette = {
 	docs = "#7DCFFF",
 }
 
-return palette
+local M = {}
+
+function M.get()
+	return vim.tbl_deep_extend("force", {}, base_palette, config.options.overrides.palette or {})
+end
+
+return M
