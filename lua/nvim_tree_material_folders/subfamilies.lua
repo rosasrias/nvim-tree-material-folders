@@ -51,19 +51,19 @@ local subfamilies = {
 	-- =====================================================
 	-- Frontend components (granular)
 	-- =====================================================
-	["/components/forms"] = {
+	["/src/components/forms"] = {
 		inherits = "frontend",
 		icon_key = "forms",
 		color_key = "forms",
 	},
 
-	["/components/ui"] = {
+	["/src/components/ui"] = {
 		inherits = "frontend",
 		icon_key = "ui",
 		color_key = "ui",
 	},
 
-	["/components/layout"] = {
+	["/src/components/layout"] = {
 		inherits = "frontend",
 		icon_key = "layout",
 		color_key = "layout",
