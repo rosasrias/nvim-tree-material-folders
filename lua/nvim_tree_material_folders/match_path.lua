@@ -31,42 +31,42 @@ local M = {}
 ---@type { fragment: string, family: string }[]
 local matchers = {
 	-- ===== Static assets =====
-	{ fragment = "/public/", family = "assets" },
-	{ fragment = "/src/assets/", family = "assets" },
+	{ fragment = "/public", family = "assets" },
+	{ fragment = "/src/assets", family = "assets" },
 
 	-- ===== Backend / Server =====
-	{ fragment = "/src/api/", family = "backend" },
-	{ fragment = "/src/server/", family = "backend" },
+	{ fragment = "/src/api", family = "backend" },
+	{ fragment = "/src/server", family = "backend" },
 
 	-- ===== Frontend / UI =====
-	{ fragment = "/src/components/", family = "frontend" },
-	{ fragment = "/src/ui/", family = "frontend" },
+	{ fragment = "/src/components", family = "frontend" },
+	{ fragment = "/src/ui", family = "frontend" },
 
 	-- ===== State =====
-	{ fragment = "/src/store/", family = "state" },
+	{ fragment = "/src/store", family = "state" },
 
 	-- ===== Styling =====
-	{ fragment = "/src/styles/", family = "styles" },
+	{ fragment = "/src/styles", family = "styles" },
 
 	-- ===== Database =====
-	{ fragment = "/src/db/", family = "database" },
+	{ fragment = "/src/db", family = "database" },
 
 	-- ===== Mobile =====
-	{ fragment = "/android/app/src/", family = "platform" },
-	{ fragment = "/ios/", family = "platform" },
+	{ fragment = "/android/app/src", family = "platform" },
+	{ fragment = "/ios", family = "platform" },
 
 	-- ===== Desktop =====
-	{ fragment = "/src-tauri/", family = "platform" },
-	{ fragment = "/electron/", family = "platform" },
+	{ fragment = "/src-tauri", family = "platform" },
+	{ fragment = "/electron", family = "platform" },
 
 	-- ===== Backend generic =====
-	{ fragment = "/cmd/", family = "backend" },
-	{ fragment = "/internal/", family = "backend" },
-	{ fragment = "/services/", family = "backend" },
+	{ fragment = "/cmd", family = "backend" },
+	{ fragment = "/internal", family = "backend" },
+	{ fragment = "/services", family = "backend" },
 
 	-- ===== Game dev assets =====
-	{ fragment = "/assets/audio/", family = "assets" },
-	{ fragment = "/assets/sprites/", family = "assets" },
+	{ fragment = "/assets/audio", family = "assets" },
+	{ fragment = "/assets/sprites", family = "assets" },
 }
 
 -- Sort by specificity (longest fragment first)
