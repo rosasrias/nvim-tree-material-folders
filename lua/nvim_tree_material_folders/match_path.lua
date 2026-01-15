@@ -17,7 +17,7 @@ local M = {}
 -- Matcher definitions
 --
 -- Each matcher:
---   { path_fragment, family_key }
+--   { fragment = string, family = string }
 --
 -- Matching rules:
 --  - Case-insensitive
@@ -28,47 +28,48 @@ local M = {}
 -- These are DEFAULT PRESETS.
 -- =========================================================
 
----@type { fragment: string, family: string, len: integer }[]
+---@type { fragment: string, family: string }[]
 local matchers = {
-	-- Backend / Server
+	-- ===== Static assets =====
+	{ fragment = "/public/", family = "assets" },
+	{ fragment = "/src/assets/", family = "assets" },
+
+	-- ===== Backend / Server =====
 	{ fragment = "/src/api/", family = "backend" },
 	{ fragment = "/src/server/", family = "backend" },
 
-	-- Frontend / UI
+	-- ===== Frontend / UI =====
 	{ fragment = "/src/components/", family = "frontend" },
 	{ fragment = "/src/ui/", family = "frontend" },
 
-	-- State
+	-- ===== State =====
 	{ fragment = "/src/store/", family = "state" },
 
-	-- Styling
+	-- ===== Styling =====
 	{ fragment = "/src/styles/", family = "styles" },
 
-	-- Assets
-	{ fragment = "/src/assets/", family = "assets" },
-
-	-- Database
+	-- ===== Database =====
 	{ fragment = "/src/db/", family = "database" },
 
-	-- Mobile
+	-- ===== Mobile =====
 	{ fragment = "/android/app/src/", family = "platform" },
 	{ fragment = "/ios/", family = "platform" },
 
-	-- Desktop
+	-- ===== Desktop =====
 	{ fragment = "/src-tauri/", family = "platform" },
 	{ fragment = "/electron/", family = "platform" },
 
-	-- Backend generic
+	-- ===== Backend generic =====
 	{ fragment = "/cmd/", family = "backend" },
 	{ fragment = "/internal/", family = "backend" },
 	{ fragment = "/services/", family = "backend" },
 
-	-- Game dev assets
+	-- ===== Game dev assets =====
 	{ fragment = "/assets/audio/", family = "assets" },
 	{ fragment = "/assets/sprites/", family = "assets" },
 }
 
--- Pre-sort matchers by specificity (longest fragment first)
+-- Sort by specificity (longest fragment first)
 table.sort(matchers, function(a, b)
 	return #a.fragment > #b.fragment
 end)
