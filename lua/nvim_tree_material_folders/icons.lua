@@ -29,7 +29,17 @@ local icons = {
 		open = "󰛗",
 	},
 
+	assets = {
+		default = "󰚝",
+		open = "󰮟",
+	},
+
 	-- ===== FRONTEND =====
+	public = {
+		default = "󱂵",
+		open = "󱂶",
+	},
+
 	components = {
 		default = "󱧶",
 		open = "󱧷",
