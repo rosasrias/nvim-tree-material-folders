@@ -39,7 +39,7 @@ local palette = {
 	build = "#F2CDCD",
 
 	-- ===== META =====
-	tests = "#8D90A1",
+	tests = "#F9E2AF",
 	docs = "#7DCFFF",
 }
 
