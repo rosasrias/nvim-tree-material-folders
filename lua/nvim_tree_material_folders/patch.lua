@@ -84,11 +84,7 @@ function M.apply()
 
 		-- Apply semantic icon + highlight
 		res.str = cached.icon
-		if cached.hl then
-			res.hl = {
-				{ name = cached.hl },
-			}
-		end
+		res.hl = cached.hl
 
 		return res
 	end
@@ -105,7 +101,7 @@ function M.apply()
 		---@diagnostic disable-next-line: missing-parameter
 		local cached = cache.resolve(self)
 		if cached and cached.hl then
-			res.hl = { name = cached.hl }
+			res.hl = cached.hl
 		end
 
 		return res
