@@ -30,10 +30,6 @@ local M = {}
 
 ---@type { fragment: string, family: string }[]
 local matchers = {
-	-- ===== Static assets =====
-	{ fragment = "/public", family = "assets" },
-	{ fragment = "/src/assets", family = "assets" },
-
 	-- ===== Backend / Server =====
 	{ fragment = "/src/api", family = "backend" },
 	{ fragment = "/src/server", family = "backend" },
