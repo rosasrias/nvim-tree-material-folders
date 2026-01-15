@@ -29,7 +29,7 @@ local palette = {
 	-- ===== FRONTEND SUBFAMILIES =====
 	templates = "#F5C2E7",
 	types = "#89DCEB",
-	forms = "#A6E3A1",
+	forms = "#FAB387",
 	ui = "#74C7EC",
 	layout = "#CBA6F7",
 
