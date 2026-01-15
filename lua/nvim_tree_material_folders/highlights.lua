@@ -10,12 +10,18 @@ local M = {}
 -- Highlight group creation
 -- =========================================================
 
+---Create all highlight groups from the palette.
+---
+---Each palette key generates:
+---   NtmfNvimTree<Key>
+--- Example:
+---   assets   → NtmfNvimTreeAssets
+---   frontend → NtmfNvimTreeFrontend
 function M.setup()
 	groups = {}
 
 	for key, color in pairs(palette) do
 		local group = "NtmfNvimTree" .. key:sub(1, 1):upper() .. key:sub(2)
-
 		groups[key] = group
 
 		vim.api.nvim_set_hl(0, group, {
@@ -24,12 +30,12 @@ function M.setup()
 		})
 	end
 
-	-- Neutral file highlight
+	-- Neutral file highlight (non-folders)
 	vim.api.nvim_set_hl(0, "NtmfNvimTreeFile", {
 		fg = "#CDD6F4",
 	})
 
-	-- Entry / main files
+	-- Entry / main files (index, main, app, etc.)
 	vim.api.nvim_set_hl(0, "NtmfNvimTreeEntryFile", {
 		fg = "#F38BA8",
 		bold = true,
@@ -40,7 +46,12 @@ end
 -- Highlight resolver
 -- =========================================================
 
----@param node table
+---Resolve highlight group for a directory node.
+---
+---The resolver output is expected to be:
+---   { icon_key = string, color_key = string }
+---
+---@param _ table
 ---@param resolved { icon_key: string, color_key: string }
 ---@return string|nil
 function M.resolve(_, resolved)
