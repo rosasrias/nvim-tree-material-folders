@@ -1,5 +1,5 @@
 local config = require("nvim_tree_material_folders.config")
-local palette = require("nvim_tree_material_folders.palette").get()
+local palette = require("nvim_tree_material_folders.palette")
 
 ---@type table<string, string>
 local groups = {}
