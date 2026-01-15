@@ -173,6 +173,11 @@ local icons = {
 		default = "󱧺",
 		open = "󱧻",
 	},
+
+	context = {
+		default = "󰉒",
+		open = "󱉆",
+	},
 }
 
 return icons
