@@ -84,11 +84,7 @@ function M.apply()
 
 		-- Apply semantic icon + highlight
 		res.str = cached.icon
-		if cached.hl then
-			res.hl = {
-				{ name = cached.hl },
-			}
-		end
+		res.hl = { name = cached.hl }
 
 		return res
 	end
