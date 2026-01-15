@@ -45,6 +45,11 @@ local icons = {
 		open = "󱧷",
 	},
 
+	forms = {
+		default = "󰥨",
+		open = "󰥩",
+	},
+
 	ui = {
 		default = "󰏘",
 		open = "󰸌",
