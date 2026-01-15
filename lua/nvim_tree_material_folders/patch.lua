@@ -1,109 +1,102 @@
 -- =========================================================
--- nvim-tree DirectoryNode patch
+-- This module monkey-patches nvim-tree DirectoryNode
+-- to provide VSCode-like folder icons & highlights.
 --
--- This module monkey-patches nvim-tree in order to inject
--- semantic folder icons and highlights, mimicking the
--- behavior of VSCode / Material Icons.
---
--- Responsibilities:
---   - Resolve semantic icon + color via resolver.lua
---   - Apply icon + highlight to folders
---   - Reuse cached results for performance
---
--- This module does NOT:
---   - Decide semantics (resolver does)
---   - Define icons or colors
---   - Manage configuration
+-- CRITICAL RULES:
+--  - Never return hl = { nil }
+--  - Never override default behavior if resolution fails
+--  - Full fallback to nvim-tree defaults
 -- =========================================================
 
 local DirectoryNode = require("nvim-tree.node.directory")
 
-local resolver = require("nvim_tree_material_folders.resolver")
-local icons = require("nvim_tree_material_folders.icons")
+local families = require("nvim_tree_material_folders.families")
+local by_path = require("nvim_tree_material_folders.match_path")
+local by_name = require("nvim_tree_material_folders.match_name")
+local by_sub = require("nvim_tree_material_folders.match_subfamily")
 local hl = require("nvim_tree_material_folders.highlights")
+local icons = require("nvim_tree_material_folders.icons")
 local cache = require("nvim_tree_material_folders.cache")
 
--- Preserve original nvim-tree behavior
+-- Preserve original methods
 local original_icon = DirectoryNode.highlighted_icon
 local original_name = DirectoryNode.highlighted_name
 
 local M = {}
 
--- =========================================================
--- Patch application
--- =========================================================
-
----Apply monkey-patch to nvim-tree DirectoryNode.
----
----This function overrides:
----  - DirectoryNode:highlighted_icon()
----  - DirectoryNode:highlighted_name()
----
----The original behavior is preserved and used as fallback
----when no semantic match is found.
 function M.apply()
-	-- -----------------------------------------------------
+	-- =====================================================
 	-- Icon patch
-	-- -----------------------------------------------------
+	-- =====================================================
 	---@diagnostic disable-next-line: duplicate-set-field
 	function DirectoryNode:highlighted_icon()
-		-- Start from original nvim-tree result
+		-- Always start from nvim-tree default
 		local res = original_icon(self)
 
-		-- Resolve semantic icon + highlight (cached)
 		local cached = cache.resolve(self, function()
-			-- -----------------------------------------
-			-- Semantic resolution
-			-- -----------------------------------------
-			local sem = resolver.resolve(self)
-			if not sem then
-				return
+			-- 1. Resolve subfamily (most specific)
+			local sub = by_sub.resolve(self)
+
+			-- 2. Resolve base family
+			local family = (sub and families[sub.inherits]) or by_path.resolve(self) or by_name.resolve(self.name)
+
+			-- No semantic meaning → fallback completely
+			if not family then
+				return nil
 			end
 
-			-- -----------------------------------------
-			-- Icon resolution
-			-- -----------------------------------------
-			local icon_set = icons[sem.icon_key]
+			-- 3. Resolve icon
+			local icon_key = sub and sub.icon_key or family.icon_key
+			local icon_set = icons[icon_key]
 			if not icon_set then
-				return
+				return nil
 			end
 
-			-- -----------------------------------------
-			-- Highlight resolution
-			-- -----------------------------------------
+			local icon = (self.open and icon_set.open) or icon_set.default
+			if not icon then
+				return nil
+			end
+
+			-- 4. Resolve highlight (SAFE)
+			local color_key = sub and sub.color_key or family.icon_key
+			local highlight = hl.resolve(self, {
+				color_key = color_key,
+			})
+
 			return {
-				icon = self.open and icon_set.open or icon_set.default,
-				hl = hl.resolve(self, { icon_key = sem.color_key }),
+				icon = icon,
+				hl = highlight, -- may be nil (this is OK)
 			}
 		end)
 
-		-- No semantic match → fallback to nvim-tree
+		-- No cache or invalid → fallback to default
 		if not cached then
 			return res
 		end
 
-		-- Apply semantic icon + highlight
 		res.str = cached.icon
-		res.hl = cached.hl and { { cached.hl } } or {}
+
+		-- Apply highlight ONLY if valid
+		if cached.hl then
+			res.hl = { cached.hl }
+		end
 
 		return res
 	end
 
-	-- -----------------------------------------------------
-	-- Name patch
-	-- -----------------------------------------------------
+	-- =====================================================
+	-- Name patch (reuse SAME highlight as icon)
+	-- =====================================================
 	---@diagnostic disable-next-line: duplicate-set-field
 	function DirectoryNode:highlighted_name()
-		-- Start from original nvim-tree result
 		local res = original_name(self)
 
-		-- Reuse cached highlight (do not recompute)
-		---@diagnostic disable-next-line: missing-parameter
 		local cached = cache.resolve(self)
-		if cached and cached.hl then
-			res.hl = cached.hl and { { cached.hl } } or {}
+		if not cached or not cached.hl then
+			return res
 		end
 
+		res.hl = { cached.hl }
 		return res
 	end
 end
