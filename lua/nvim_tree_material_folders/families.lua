@@ -257,6 +257,7 @@ local base_families = {
 		icon_key = "docs",
 		color_key = "docs",
 		match = {
+			"doc",
 			"doc[s]?",
 			"documentation",
 			"guide[s]?",
