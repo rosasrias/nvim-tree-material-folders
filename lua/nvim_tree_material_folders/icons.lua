@@ -178,6 +178,11 @@ local icons = {
 		default = "󰉒",
 		open = "󱉆",
 	},
+
+	services = {
+		default = "󱉭",
+		open = "󱉮",
+	},
 }
 
 return icons
