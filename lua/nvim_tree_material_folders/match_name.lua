@@ -13,6 +13,10 @@
 
 local families = require("nvim_tree_material_folders.families")
 
+--- !NOTE:
+-- This module never resolves subfamilies.
+-- Subfamilies are handled exclusively by match_subfamily.lua.
+--
 -- =========================================================
 -- Name match definitions
 --
@@ -136,7 +140,8 @@ function M.resolve(name)
 		return
 	end
 
-	local family_key = matchers[name:lower()]
+	local key = name:lower():gsub("/$", "")
+	local family_key = matchers[key]
 	if not family_key then
 		return
 	end
