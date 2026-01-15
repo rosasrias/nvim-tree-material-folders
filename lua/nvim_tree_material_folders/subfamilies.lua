@@ -141,6 +141,12 @@ local subfamilies = {
 		icon_key = "utils",
 		color_key = "tools",
 	},
+
+	["src/context"] = {
+		inherits = "frontend",
+		icon_key = "context",
+		color_key = "forms",
+	},
 }
 
 return subfamilies
