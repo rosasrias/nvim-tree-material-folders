@@ -1,7 +1,7 @@
 *nvim_tree_material_folders.txt*  Material folder icons for nvim-tree
 
 ==============================================================================
-INTRODUCTION                                    *nvim-tree-material-folders*
+INTRODUCTION~                                   *nvim-tree-material-folders*
 
 nvim-tree-material-folders adds semantic folder icons and colors to nvim-tree.
 
@@ -14,7 +14,7 @@ without visual noise.
 
 ==============================================================================
 
-INSTALLATION                                  *nvim-tree-material-folders-install*
+INSTALLATION~                                 *nvim-tree-material-folders-install*
 
 Using lazy.nvim:
 
@@ -34,16 +34,16 @@ The patch is applied lazily and should be enabled when nvim-tree attaches.
 Example:
 
 >
-require("nvim-tree").setup({
-  on_attach = function()
-    require("nvim_tree_material_folders").apply()
-  end,
-})
+  require("nvim-tree").setup({
+    on_attach = function()
+      require("nvim_tree_material_folders").apply()
+    end,
+  })
 <
 
 ==============================================================================
 
-SETUP                                         *nvim-tree-material-folders-setup*
+SETUP~                                        *nvim-tree-material-folders-setup*
 
 Minimal setup:
 
@@ -56,7 +56,7 @@ defaults.
 
 ==============================================================================
 
-ARCHITECTURE                                *nvim-tree-material-folders-architecture*
+ARCHITECTURE~                           *nvim-tree-material-folders-architecture*
 
 Resolution order (highest priority first):
 
@@ -80,7 +80,7 @@ Subfamilies refine a base family by providing a more specific icon and color.
 
 ==============================================================================
 
-FAMILIES                                     *nvim-tree-material-folders-families*
+FAMILIES~                                   *nvim-tree-material-folders-families*
 
 Families represent broad semantic roles:
 
@@ -92,7 +92,7 @@ Families represent broad semantic roles:
 - styles      (css, scss, themes)
 - assets      (images, icons, fonts)
 - tests       (tests, specs, e2e)
-- tools       (scripts, cli)
+- tooling     (scripts, cli)
 - config      (config, ci)
 - build       (dist, build)
 - docs        (docs, guides)
@@ -101,17 +101,18 @@ Families are technology-agnostic.
 
 ==============================================================================
 
-SUBFAMILIES                               *nvim-tree-material-folders-subfamilies*
+SUBFAMILIES~                           *nvim-tree-material-folders-subfamilies*
 
 Subfamilies allow refining a family with more precise semantics.
 
 Examples:
 
 - assets/images     → images
-- components/forms  → forms
-- src/hooks         → hooks
-- src/types         → types
-- src/utils         → utils
+- src/components/forms
+- src/components/ui
+- src/hooks
+- src/types
+- src/utils
 
 Subfamilies define:
 - icon_key
@@ -120,34 +121,98 @@ Subfamilies define:
 
 ==============================================================================
 
-CUSTOMIZATION                            *nvim-tree-material-folders-custom*
+HIGHLIGHT GROUPS~                      *nvim-tree-material-folders-highlights*
+
+nvim-tree-material-folders generates semantic highlight groups dynamically
+based on the active palette and the resolved family or subfamily.
+
+All highlight groups follow this naming convention:
+
+>
+  NtmfNvimTree<Name>
+<
+
+Where <Name> is the capitalized palette key.
+
+Examples:
+
+- NtmfNvimTreeFrontend
+- NtmfNvimTreeBackend
+- NtmfNvimTreeAssets
+- NtmfNvimTreeForms
+- NtmfNvimTreeImages
+- NtmfNvimTreeConfig
+- NtmfNvimTreeDocs
+
+These groups are applied to:
+- Folder icons
+- Folder names
+
+If no semantic match is found, nvim-tree defaults are used.
+
+------------------------------------------------------------------------------
+
+Default extra groups:
+
+- NtmfNvimTreeFile
+  Used for neutral files.
+
+- NtmfNvimTreeEntryFile
+  Used for entry-point or main files.
+
+==============================================================================
+
+PALETTE~                                 *nvim-tree-material-folders-palette*
+
+The palette defines the colors used by semantic highlight groups.
+
+Each palette entry maps:
+
+>
+  <color_key> → <hex color>
+<
+
+Example default palette entry:
+
+>
+  frontend = "#89B4FA"
+<
+
+Palette keys MUST match:
+- family.color_key
+- subfamily.color_key
+
+==============================================================================
+
+CUSTOMIZATION~                           *nvim-tree-material-folders-custom*
 
 You can customize:
 
 - Icons
-- Colors (palette)
+- Palette (colors)
 - Families
 - Subfamilies
-- Path matchers
-- Name matchers
 
 Override only what you need.
 
 Example:
 
 >
-require("nvim_tree_material_folders").setup({
-  overrides = {
-    icons = {
-      frontend = { default = "", open = "" },
+  require("nvim_tree_material_folders").setup({
+    overrides = {
+      icons = {
+        frontend = { default = "", open = "" },
+      },
+      palette = {
+        frontend = "#7AA2F7",
+      },
     },
-  },
-})
+  })
 <
 
 ==============================================================================
 
-PERFORMANCE                             *nvim-tree-material-folders-performance*
+PERFORMANCE~                        *nvim-tree-material-folders-performance*
 
 - Icons and highlights are cached per node
 - Cache is cleared when nvim-tree closes
@@ -158,7 +223,7 @@ The plugin is designed to have minimal impact on startup time.
 
 ==============================================================================
 
-REQUIREMENTS                           *nvim-tree-material-folders-requirements*
+REQUIREMENTS~                      *nvim-tree-material-folders-requirements*
 
 - Neovim >= 0.9
 - nvim-tree
@@ -166,7 +231,7 @@ REQUIREMENTS                           *nvim-tree-material-folders-requirements*
 
 ==============================================================================
 
-AUTHOR                                   *nvim-tree-material-folders-author*
+AUTHOR~                                  *nvim-tree-material-folders-author*
 
 rosasrias
 
