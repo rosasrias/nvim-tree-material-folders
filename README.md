@@ -130,6 +130,7 @@ Families represent roles, not technologies:
 
 You can extend or override them freely.
 
+
 ## 🧩 Subfamilies 
 Subfamilies refine a family with more precise semantics:
 
