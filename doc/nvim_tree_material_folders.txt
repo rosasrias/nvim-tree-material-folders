@@ -13,12 +13,10 @@ The goal is to provide a clean, professional tree with strong visual meaning,
 without visual noise.
 
 ==============================================================================
-
 INSTALLATION~                                 *nvim-tree-material-folders-install*
 
 Using lazy.nvim:
-
->
+>lua
   {
     "rosasrias/nvim-tree-material-folders",
     dependencies = { "nvim-tree/nvim-tree.lua" },
@@ -28,12 +26,11 @@ Using lazy.nvim:
   }
 <
 
-IMPORTANT:
+|IMPORTANT:|
 The patch is applied lazily and should be enabled when nvim-tree attaches.
 
-Example:
-
->
+|Example:|
+>lua
   require("nvim-tree").setup({
     on_attach = function()
       require("nvim_tree_material_folders").apply()
@@ -42,12 +39,10 @@ Example:
 <
 
 ==============================================================================
-
 SETUP~                                        *nvim-tree-material-folders-setup*
 
 Minimal setup:
-
->
+>lua
   require("nvim_tree_material_folders").setup()
 <
 
@@ -55,7 +50,6 @@ All options are optional. The plugin works out-of-the-box with sensible
 defaults.
 
 ==============================================================================
-
 ARCHITECTURE~                           *nvim-tree-material-folders-architecture*
 
 Resolution order (highest priority first):
@@ -79,7 +73,6 @@ Resolution order (highest priority first):
 Subfamilies refine a base family by providing a more specific icon and color.
 
 ==============================================================================
-
 FAMILIES~                                   *nvim-tree-material-folders-families*
 
 Families represent broad semantic roles:
@@ -100,12 +93,11 @@ Families represent broad semantic roles:
 Families are technology-agnostic.
 
 ==============================================================================
-
 SUBFAMILIES~                           *nvim-tree-material-folders-subfamilies*
 
 Subfamilies allow refining a family with more precise semantics.
 
-Examples:
+|Examples:|
 
 - assets/images     → images
 - src/components/forms
@@ -120,21 +112,19 @@ Subfamilies define:
 - inherited family
 
 ==============================================================================
-
 HIGHLIGHT GROUPS~                      *nvim-tree-material-folders-highlights*
 
 nvim-tree-material-folders generates semantic highlight groups dynamically
 based on the active palette and the resolved family or subfamily.
 
 All highlight groups follow this naming convention:
-
->
+>bash
   NtmfNvimTree<Name>
 <
 
 Where <Name> is the capitalized palette key.
 
-Examples:
+|Examples:|
 
 - NtmfNvimTreeFrontend
 - NtmfNvimTreeBackend
@@ -161,29 +151,58 @@ Default extra groups:
   Used for entry-point or main files.
 
 ==============================================================================
-
 PALETTE~                                 *nvim-tree-material-folders-palette*
 
 The palette defines the colors used by semantic highlight groups.
 
 Each palette entry maps:
-
->
+>bash
   <color_key> → <hex color>
 <
 
 Example default palette entry:
-
->
+>bash
   frontend = "#89B4FA"
 <
-
 Palette keys MUST match:
 - family.color_key
 - subfamily.color_key
 
-==============================================================================
+Local palette use this colors: 
 
+>bash
+  local palette = {
+    # ===== CORE =====
+    core = "#89B4FA", # -- src, app, core
+    frontend = "#A6E3A1", # -- components, ui, pages
+    backend = "#F38BA8", # -- api, services
+    database = "#FAB387", # -- db, prisma, supabase
+    state = "#CBA6F7", # -- store, hooks
+
+    # ===== STYLES / ASSETS =====
+    styles = "#94E2D5", -- css, scss
+    assets = "#EBA0AC", -- assets root
+    images = "#89DCEB",
+    icons = "#F9E2AF",
+
+    # ===== FRONTEND SUBFAMILIES =====
+    templates = "#F5C2E7",
+    types = "#89DCEB",
+    forms = "#FAB387",
+    ui = "#74C7EC",
+    layout = "#CBA6F7",
+
+    # ===== TOOLING =====
+    tools = "#B4BEFE",
+    config = "#6C7086",
+    build = "#F2CDCD",
+
+    # ===== META =====
+    tests = "#F9E2AF",
+    docs = "#7DCFFF",
+}
+<
+==============================================================================
 CUSTOMIZATION~                           *nvim-tree-material-folders-custom*
 
 You can customize:
@@ -195,9 +214,8 @@ You can customize:
 
 Override only what you need.
 
-Example:
-
->
+|Example:|
+>lua
   require("nvim_tree_material_folders").setup({
     overrides = {
       icons = {
@@ -211,7 +229,6 @@ Example:
 <
 
 ==============================================================================
-
 PERFORMANCE~                        *nvim-tree-material-folders-performance*
 
 - Icons and highlights are cached per node
@@ -222,7 +239,6 @@ PERFORMANCE~                        *nvim-tree-material-folders-performance*
 The plugin is designed to have minimal impact on startup time.
 
 ==============================================================================
-
 REQUIREMENTS~                      *nvim-tree-material-folders-requirements*
 
 - Neovim >= 0.9
@@ -230,7 +246,6 @@ REQUIREMENTS~                      *nvim-tree-material-folders-requirements*
 - Nerd Font enabled
 
 ==============================================================================
-
 AUTHOR~                                  *nvim-tree-material-folders-author*
 
 rosasrias
