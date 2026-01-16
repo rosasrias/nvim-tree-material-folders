@@ -165,6 +165,61 @@ require("nvim_tree_material_folders").setup({
 })
 ```
 
+## 🎨 Highlight Groups
+
+`nvim-tree-material-folders` dynamically generates semantic Highlight Groups from the palette, families, and subfamilies.
+
+All groups follow this convention:
+
+```bash
+NtmfNvimTree<Name>
+```
+
+Where <Name> is the capitalized version of the color_key.
+
+These groups apply to both the folder icon and the name.
+
+### 📋 Default Highlight Groups
+
+| Highlight Group        | Semantic Meaning       | Used For                     |
+| ---------------------- | ---------------------- | ---------------------------- |
+| `NtmfNvimTreeCore`     | Core / source code     | `src`, `app`, `lib`          |
+| `NtmfNvimTreeFrontend` | Frontend / UI          | `components`, `pages`, `ui`  |
+| `NtmfNvimTreeBackend`  | Backend / services     | `api`, `server`, `services`  |
+| `NtmfNvimTreeState`    | State management       | `store`, `hooks`, `state`    |
+| `NtmfNvimTreeDatabase` | Database / persistence | `db`, `migrations`, `prisma` |
+| `NtmfNvimTreeStyles`   | Styling / design       | `styles`, `css`, `scss`      |
+| `NtmfNvimTreeAssets`   | Static assets          | `assets`, `public`, `media`  |
+| `NtmfNvimTreeTests`    | Testing                | `tests`, `specs`, `e2e`      |
+| `NtmfNvimTreeDocs`     | Documentation          | `docs`, `guides`, `wiki`     |
+| `NtmfNvimTreeTooling`  | Tooling / scripts      | `scripts`, `cli`, `tools`    |
+| `NtmfNvimTreeConfig`   | Configuration / meta   | `.husky`, `.github`, `config`  |
+| `NtmfNvimTreeBuild`    | Build / output         | `dist`, `build`, `out`       |
+
+
+### 🧩 Subfamily Highlight Groups 
+
+Subfamilies generate their own highlight groups when they define
+a custom color_key.
+
+Examples included by default:
+
+| Highlight Group      | Path Example        |
+| -------------------- | ------------------- |
+| `NtmfNvimTreeForms`  | `components/forms`  |
+| `NtmfNvimTreeUI`     | `components/ui`     |
+| `NtmfNvimTreeLayout` | `components/layout` |
+| `NtmfNvimTreeImages` | `assets/images`     |
+| `NtmfNvimTreeIcons`  | `assets/icons`      |
+| `NtmfNvimTreeFonts`  | `assets/fonts`      |
+| `NtmfNvimTreeHooks`  | `src/hooks`         |
+| `NtmfNvimTreeTypes`  | `src/types`         |
+| `NtmfNvimTreeUtils`  | `src/utils`         |
+
+
+![NOTE]💡 Any new subfamily automatically creates a new highlight group
+if its color_key exists in the palette.
+
 ## ⚡ Performance 
 
 - Results cached per node
