@@ -16,13 +16,15 @@ function M.match(node)
   local path = normalize(node.absolute_path or "")
 
   -- -------------------------------------------------
-  -- 1. Exact name match
+  -- 1. Exact name match (highest priority)
   -- -------------------------------------------------
-  if custom[name] then
-    local c = custom[name]
+  local c = custom[name]
+  if c then
     return {
       icon_key = c.icon_key,
       color_key = c.color_key or c.icon_key,
+      color = c.color,
+      hl_group = c.hl_group,
     }
   end
 
@@ -34,6 +36,8 @@ function M.match(node)
       return {
         icon_key = c.icon_key,
         color_key = c.color_key or c.icon_key,
+        color = c.color,
+        hl_group = c.hl_group,
       }
     end
   end
@@ -46,6 +50,8 @@ function M.match(node)
       return {
         icon_key = c.icon_key,
         color_key = c.color_key or c.icon_key,
+        color = c.color,
+        hl_group = c.hl_group,
       }
     end
   end

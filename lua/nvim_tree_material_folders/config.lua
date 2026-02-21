@@ -6,7 +6,8 @@
 ---@field match '"name"'|'"path"'|'"pattern"'|nil
 ---@field pattern string|nil
 ---@field icon_key string
----@field color_key string|nil
+---@field color string|nil
+---@field hl_group string|nil
 
 ---@class NtmfOverrides
 ---@field icons table<string, table>|nil
