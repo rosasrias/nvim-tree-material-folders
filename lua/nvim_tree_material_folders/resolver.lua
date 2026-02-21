@@ -19,6 +19,7 @@
 local by_path = require("nvim_tree_material_folders.match_path")
 local by_name = require("nvim_tree_material_folders.match_name")
 local by_sub = require("nvim_tree_material_folders.match_subfamily")
+local match_custom = require("nvim_tree_material_folders.match_custom")
 
 local M = {}
 
@@ -38,50 +39,63 @@ local M = {}
 ---@param node table nvim-tree DirectoryNode
 ---@return { icon_key: string, color_key: string }|nil
 function M.resolve(node)
-	if not node then
-		return
-	end
+  if not node then
+    return
+  end
 
-	-- -----------------------------------------------------
-	-- 1. Subfamily (highest priority)
-	-- -----------------------------------------------------
-	-- Subfamilies represent the most specific semantics
-	-- (e.g. /src/components/forms → forms)
-	--
-	local sub = by_sub.resolve(node)
-	if sub then
-		return {
-			icon_key = sub.icon_key,
-			color_key = sub.color_key,
-		}
-	end
+  -- -----------------------------------------------------
+  -- 0. Custom folders (highest priority)
+  -- -----------------------------------------------------
+  -- User-defined folders MUST override all semantics
+  --
+  local custom = match_custom.match(node)
+  if custom then
+    return {
+      icon_key = custom.icon_key,
+      color_key = custom.color_key or custom.icon_key,
+    }
+  end
 
-	-- -----------------------------------------------------
-	-- 2. Base family (path → name)
-	-- -----------------------------------------------------
-	-- Path-based matching has higher priority than
-	-- name-based matching to allow semantic differentiation
-	-- (e.g. src/api vs api/)
-	--
-	local family = by_path.resolve(node) or by_name.resolve(node.name)
-	if not family then
-		return
-	end
+  -- -----------------------------------------------------
+  -- 1. Subfamily (highest priority)
+  -- -----------------------------------------------------
+  -- Subfamilies represent the most specific semantics
+  -- (e.g. /src/components/forms → forms)
+  --
+  local sub = by_sub.resolve(node)
+  if sub then
+    return {
+      icon_key = sub.icon_key,
+      color_key = sub.color_key,
+    }
+  end
 
-	-- -----------------------------------------------------
-	-- 3. Family resolution
-	-- -----------------------------------------------------
-	-- icon_key: used to select folder icon
-	-- color_key: used to resolve highlight group
-	--
-	-- IMPORTANT:
-	-- icon_key and color_key are intentionally decoupled.
-	-- Do NOT assume they are the same.
-	--
-	return {
-		icon_key = family.icon_key,
-		color_key = family.color_key or family.icon_key,
-	}
+  -- -----------------------------------------------------
+  -- 2. Base family (path → name)
+  -- -----------------------------------------------------
+  -- Path-based matching has higher priority than
+  -- name-based matching to allow semantic differentiation
+  -- (e.g. src/api vs api/)
+  --
+  local family = by_path.resolve(node) or by_name.resolve(node.name)
+  if not family then
+    return
+  end
+
+  -- -----------------------------------------------------
+  -- 3. Family resolution
+  -- -----------------------------------------------------
+  -- icon_key: used to select folder icon
+  -- color_key: used to resolve highlight group
+  --
+  -- IMPORTANT:
+  -- icon_key and color_key are intentionally decoupled.
+  -- Do NOT assume they are the same.
+  --
+  return {
+    icon_key = family.icon_key,
+    color_key = family.color_key or family.icon_key,
+  }
 end
 
 return M
